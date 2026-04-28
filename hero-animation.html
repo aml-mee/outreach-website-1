@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AlwaysOutreach Hero Animation</title>
+<title>AlwaysOutreach — Hero Animation</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -11,14 +11,15 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background: transparent;
+    background: linear-gradient(135deg, #1a35d4 0%, #2c4de8 40%, #1e3ac9 100%);
+    min-height: 100vh;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding: 0;
-    overflow: hidden;
+    padding: 24px;
   }
 
+  /* ── Panel shell ── */
   .panel {
     width: 420px;
     background: rgba(255,255,255,0.06);
@@ -69,6 +70,7 @@
 
   .panel-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
 
+  /* ── Prospect card ── */
   .prospect-card {
     background: rgba(255,255,255,0.07);
     border: 1px solid rgba(255,255,255,0.1);
@@ -121,6 +123,7 @@
     color: #93c5fd;
   }
 
+  /* ── Email composer ── */
   .email-composer {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
@@ -170,6 +173,7 @@
     font-weight: 500;
   }
 
+  /* ── Send button ── */
   .send-row {
     padding: 10px 14px 12px;
     display: flex;
@@ -196,12 +200,14 @@
     color: #4ade80;
     transform: scale(1.03);
   }
+  .send-icon { font-size: 13px; }
   .uniqueness-note {
     font-size: 10px;
     color: rgba(255,255,255,0.3);
     font-style: italic;
   }
 
+  /* ── Progress bar ── */
   .progress-bar-wrap {
     height: 2px;
     background: rgba(255,255,255,0.08);
@@ -217,6 +223,7 @@
     transition: width linear;
   }
 
+  /* ── Prospect switcher dots ── */
   .switcher {
     display: flex;
     justify-content: center;
@@ -233,6 +240,7 @@
     transform: scale(1.3);
   }
 
+  /* transition fade */
   .card-fade { transition: opacity 0.35s ease; }
   .card-fade.hidden { opacity: 0; }
 </style>
@@ -249,6 +257,7 @@
   </div>
 
   <div class="panel-body">
+    <!-- Prospect card -->
     <div class="prospect-card card-fade" id="prospect-card">
       <div class="prospect-header">
         <div class="avatar" id="avatar"></div>
@@ -261,6 +270,7 @@
       <div class="tags" id="tags"></div>
     </div>
 
+    <!-- Email composer -->
     <div class="email-composer card-fade" id="email-composer">
       <div class="email-header">
         <div class="email-field">
@@ -277,6 +287,7 @@
       </div>
       <div class="send-row">
         <button class="send-btn" id="send-btn">
+          <span class="send-icon">✦</span>
           <span id="send-label">Send personalised email</span>
         </button>
         <span class="uniqueness-note" id="unique-note">1 of 1 ever sent</span>
@@ -294,49 +305,64 @@
 <script>
 const prospects = [
   {
-    initials: 'JM',
-    color: '#5b6ef5',
-    name: 'James Mitchell',
-    role: 'VP Sales · TechCo',
-    email: 'j.mitchell@techco.com',
+    initials: 'RT',
+    color: '#2a6db5',
+    name: 'Rachel Torres',
+    role: 'Head of Partnerships · FreightPath',
+    email: 'r.torres@freightpath.com',
     tags: [
-      { label: 'Just raised Series B', highlight: true },
-      { label: 'Hiring 12 SDRs' },
-      { label: 'Outgrown HubSpot' },
-      { label: 'Posts about pipeline on LinkedIn', highlight: true },
+      { label: 'Cross-border logistics', highlight: true },
+      { label: 'Expanding into EU corridors' },
+      { label: 'Just lost major carrier contract', highlight: true },
+      { label: 'Speaking at LogiTech Summit' },
     ],
-    subject: 'Congrats on the Series B, James',
-    body: `Hi James — saw the <span class="highlight-word">Series B news</span> and the 12 SDR roles you've posted.\n\nScaling a sales team that fast usually means pipeline becomes the constraint before headcount does.\n\nWe help companies in exactly this stage fill the top of the funnel without spray-and-pray. Worth a quick chat?`,
+    subject: 'EU expansion + the carrier gap',
+    body: `Hi Rachel — I saw FreightPath is pushing into <span class="highlight-word">EU cross-border routes</span> this year, and noticed the recent carrier contract news.\n\nThat's a tough combination — new market, tighter capacity.\n\nOur client Movefast used targeted outreach to sign <span class="highlight-word">three new 3PL partners</span> in under 60 days in a similar position. Worth a conversation?`,
   },
   {
-    initials: 'SR',
+    initials: 'MB',
     color: '#7c5cbf',
-    name: 'Sarah Reeves',
-    role: 'CEO · GrowthBase',
-    email: 's.reeves@growthbase.io',
+    name: 'Marcus Bell',
+    role: 'Managing Partner · Bell & Crane LLP',
+    email: 'm.bell@bellandcrane.com',
     tags: [
-      { label: 'Bootstrapped, no sales team' },
-      { label: 'Founder-led sales', highlight: true },
-      { label: 'Expanding to US market', highlight: true },
-      { label: 'SaaStr attendee' },
+      { label: 'M&A and corporate law' },
+      { label: 'Targeting PE-backed mid-market', highlight: true },
+      { label: 'Just promoted two partners' },
+      { label: 'No dedicated BD resource', highlight: true },
     ],
-    subject: 'Founder-led sales — US expansion',
-    body: `Hi Sarah — noticed you're taking <span class="highlight-word">GrowthBase into the US</span> this year, which is exciting.\n\nMost bootstrapped founders hit the same wall: not enough hours to personally do outbound at the volume the US market demands.\n\nWe write and send <span class="highlight-word">individually researched emails</span> on your behalf — reads like you, reaches hundreds. Happy to share examples?`,
+    subject: 'BD for PE-focused practices',
+    body: `Hi Marcus — congratulations on the two recent partner promotions at Bell & Crane.\n\nGrowing a <span class="highlight-word">PE-focused M&A practice</span> without a dedicated BD team is a real bandwidth problem — the best mandates rarely come from cold directories.\n\nWe run quiet, <span class="highlight-word">research-led outreach</span> to CFOs and GCs at PE-backed businesses on behalf of firms like yours. Happy to share how it works?`,
   },
   {
-    initials: 'DK',
+    initials: 'PN',
     color: '#1a8f6f',
-    name: 'David Kim',
-    role: 'CTO · Scalify',
-    email: 'd.kim@scalify.com',
+    name: 'Priya Nair',
+    role: 'CEO · Kova Health',
+    email: 'p.nair@kovahealth.io',
     tags: [
-      { label: 'Recently left Stripe', highlight: true },
-      { label: 'Building dev-tools startup' },
-      { label: 'Technical buyer', highlight: true },
-      { label: 'Published OSS project' },
+      { label: 'Digital health platform' },
+      { label: 'Targeting NHS trusts', highlight: true },
+      { label: 'NICE approval pending', highlight: true },
+      { label: 'Team of 18, no sales hire yet' },
     ],
-    subject: "Your OSS project + Scalify's go-to-market",
-    body: `Hi David — I came across your <span class="highlight-word">open-source project</span> and then found Scalify. Impressive pivot from Stripe.\n\nTechnical founders often underestimate how much early B2B pipeline comes from deliberate outreach to the right 50 people — not 5,000.\n\nThat's exactly our model. Would love to show you what a <span class="highlight-word">tailored campaign</span> looks like for a dev-tools ICP.`,
+    subject: 'NHS pipeline ahead of NICE approval',
+    body: `Hi Priya — Kova's NICE submission caught my eye. That's a major milestone.\n\nThe window between approval and widespread adoption is where most health-tech companies lose ground — NHS procurement cycles are long, and <span class="highlight-word">relationships need to start now</span>.\n\nWe help companies like yours open doors with the right <span class="highlight-word">trust procurement leads</span> before the market gets crowded. Worth exploring?`,
+  },
+  {
+    initials: 'OA',
+    color: '#b5522a',
+    name: 'Oliver Adeyemi',
+    role: 'Director · Adeyemi Structural',
+    email: 'o.adeyemi@adeyemistructural.co.uk',
+    tags: [
+      { label: 'Structural engineering firm' },
+      { label: 'Targeting housebuilders', highlight: true },
+      { label: 'Just hired 4 engineers' },
+      { label: 'Capacity to take on 6 new projects', highlight: true },
+    ],
+    subject: 'Structural capacity → housebuilder pipeline',
+    body: `Hi Oliver — I noticed Adeyemi Structural has grown the team recently and has <span class="highlight-word">capacity for new project work</span>.\n\nMost structural firms we speak to win work through referrals alone — which is great until it isn't.\n\nWe've helped similar practices open direct conversations with <span class="highlight-word">regional housebuilders and developers</span> who are actively tendering. Would it be useful to see how?`,
   },
 ];
 
@@ -346,6 +372,7 @@ let animTimeout = [];
 function clearTimers() { animTimeout.forEach(clearTimeout); animTimeout = []; }
 function delay(fn, ms) { const t = setTimeout(fn, ms); animTimeout.push(t); return t; }
 
+// Build switcher dots
 const switcher = document.getElementById('switcher');
 prospects.forEach((_, i) => {
   const d = document.createElement('div');
@@ -355,21 +382,25 @@ prospects.forEach((_, i) => {
 });
 
 function typeInto(el, html, msPerChar, cb) {
+  // We type the visible text char by char, but preserve HTML spans
+  // Strategy: build full innerHTML, then reveal char by char using a character counter approach
   el.innerHTML = '';
   const temp = document.createElement('div');
   temp.innerHTML = html;
   const fullText = temp.textContent;
+
   let charIndex = 0;
   const totalChars = fullText.length;
 
   function tick() {
     charIndex++;
+    // Rebuild innerHTML up to charIndex visible chars
     el.innerHTML = revealChars(html, charIndex) + '<span class="cursor"></span>';
     if (charIndex < totalChars) {
       const t = setTimeout(tick, msPerChar + (Math.random() * msPerChar * 0.5));
       animTimeout.push(t);
     } else {
-      el.innerHTML = html;
+      el.innerHTML = html; // final, no cursor
       if (cb) cb();
     }
   }
@@ -377,11 +408,13 @@ function typeInto(el, html, msPerChar, cb) {
 }
 
 function revealChars(htmlStr, count) {
+  // Walk through htmlStr, counting visible chars, stop at `count`
   let result = '';
   let i = 0;
   let visible = 0;
   while (i < htmlStr.length && visible < count) {
     if (htmlStr[i] === '<') {
+      // find closing >
       const close = htmlStr.indexOf('>', i);
       if (close === -1) break;
       result += htmlStr.slice(i, close + 1);
@@ -408,18 +441,22 @@ function runProspect(idx) {
   const p = prospects[idx];
   clearTimers();
 
+  // Update switcher
   prospects.forEach((_, i) => {
     document.getElementById(`dot-${i}`).className = 'switcher-dot' + (i === idx ? ' active' : '');
   });
 
+  // Reset progress bar
   const bar = document.getElementById('progress-bar');
   bar.style.transition = 'none';
   bar.style.width = '0%';
 
+  // Fade out
   document.getElementById('prospect-card').classList.add('hidden');
   document.getElementById('email-composer').classList.add('hidden');
 
   delay(() => {
+    // Set avatar
     const av = document.getElementById('avatar');
     av.textContent = p.initials;
     av.style.background = p.color;
@@ -427,20 +464,24 @@ function runProspect(idx) {
     document.getElementById('prospect-name').textContent = p.name;
     document.getElementById('prospect-role').textContent = p.role;
 
+    // Clear tags
     const tagsEl = document.getElementById('tags');
     tagsEl.innerHTML = '';
 
+    // Clear email
     document.getElementById('email-to').textContent = '';
     document.getElementById('email-subject').textContent = '';
     document.getElementById('email-body').innerHTML = '';
     document.getElementById('send-btn').className = 'send-btn';
     document.getElementById('send-label').textContent = 'Send personalised email';
 
+    // Fade in prospect card
     document.getElementById('prospect-card').classList.remove('hidden');
     document.getElementById('email-composer').classList.remove('hidden');
 
+    // Animate tags in one by one
     let tagDelay = 300;
-    p.tags.forEach((tag) => {
+    p.tags.forEach((tag, i) => {
       const span = document.createElement('span');
       span.className = 'tag' + (tag.highlight ? ' highlight' : '');
       span.textContent = tag.label;
@@ -451,17 +492,26 @@ function runProspect(idx) {
 
     const afterTags = tagDelay + 200;
 
+    // Type "To"
     delay(() => {
-      typeInto(document.getElementById('email-to'), p.email, 28, () => {
+      const toEl = document.getElementById('email-to');
+      typeInto(toEl, p.email, 28, () => {
+        // Type subject
         delay(() => {
-          typeInto(document.getElementById('email-subject'), p.subject, 22, () => {
+          const subEl = document.getElementById('email-subject');
+          typeInto(subEl, p.subject, 22, () => {
+            // Type body
             delay(() => {
-              typeInto(document.getElementById('email-body'), p.body.replace(/\n/g, '<br>'), 14, () => {
+              const bodyEl = document.getElementById('email-body');
+              const bodyHtml = p.body.replace(/\n/g, '<br>');
+              typeInto(bodyEl, bodyHtml, 14, () => {
+                // Send button
                 delay(() => {
                   const btn = document.getElementById('send-btn');
                   btn.classList.add('sending');
                   document.getElementById('send-label').textContent = 'Sent ✓';
 
+                  // Start progress bar for next prospect
                   const CYCLE = 2400;
                   delay(() => {
                     bar.style.transition = `width ${CYCLE}ms linear`;
@@ -469,8 +519,10 @@ function runProspect(idx) {
                   }, 100);
 
                   delay(() => {
-                    runProspect((idx + 1) % prospects.length);
+                    const next = (idx + 1) % prospects.length;
+                    runProspect(next);
                   }, CYCLE + 200);
+
                 }, 500);
               });
             }, 200);
@@ -478,6 +530,7 @@ function runProspect(idx) {
         }, 300);
       });
     }, afterTags);
+
   }, 350);
 }
 
