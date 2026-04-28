@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AlwaysOutreach Hero Animation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .panel {
+    width: 420px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05) inset;
+  }
+
+  .panel-titlebar {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .panel-title {
+    margin-left: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+  .live-badge {
+    margin-left: auto;
+    font-size: 10px;
+    color: #4ade80;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .live-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #4ade80;
+    animation: pulse-green 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.75); }
+  }
+
+  .panel-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  .prospect-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .prospect-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+  }
+  .prospect-name { font-size: 14px; font-weight: 600; color: #fff; }
+  .prospect-role { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+  .research-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px; }
+  .tag {
+    font-size: 11px;
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.12);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+  }
+  .tag.visible { opacity: 1; transform: translateY(0); }
+  .tag.highlight {
+    background: rgba(99,179,255,0.18);
+    border-color: rgba(99,179,255,0.35);
+    color: #93c5fd;
+  }
+
+  .email-composer {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .email-header {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .email-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .email-field-label {
+    color: rgba(255,255,255,0.3);
+    font-weight: 500;
+    width: 40px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .email-field-value { color: rgba(255,255,255,0.75); font-weight: 400; line-height: 1.4; }
+  .email-field-value .cursor {
+    display: inline-block;
+    width: 1.5px; height: 12px;
+    background: rgba(255,255,255,0.7);
+    margin-left: 1px;
+    vertical-align: middle;
+    animation: blink 0.85s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .email-body-area { padding: 12px 14px; }
+  .email-body-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    min-height: 80px;
+  }
+  .email-body-text .highlight-word {
+    color: #93c5fd;
+    font-weight: 500;
+  }
+
+  .send-row {
+    padding: 10px 14px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .send-btn {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 16px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    color: #fff;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .send-btn.sending {
+    background: rgba(74,222,128,0.2);
+    border-color: rgba(74,222,128,0.4);
+    color: #4ade80;
+    transform: scale(1.03);
+  }
+  .uniqueness-note {
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    font-style: italic;
+  }
+
+  .progress-bar-wrap {
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    margin: 4px 16px 12px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: rgba(147,197,253,0.5);
+    border-radius: 2px;
+    width: 0%;
+    transition: width linear;
+  }
+
+  .switcher {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding-bottom: 14px;
+  }
+  .switcher-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .switcher-dot.active {
+    background: rgba(255,255,255,0.75);
+    transform: scale(1.3);
+  }
+
+  .card-fade { transition: opacity 0.35s ease; }
+  .card-fade.hidden { opacity: 0; }
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <div class="panel-titlebar">
+    <div class="dot dot-r"></div>
+    <div class="dot dot-y"></div>
+    <div class="dot dot-g"></div>
+    <span class="panel-title">Writing now</span>
+    <span class="live-badge"><span class="live-dot"></span>LIVE</span>
+  </div>
+
+  <div class="panel-body">
+    <div class="prospect-card card-fade" id="prospect-card">
+      <div class="prospect-header">
+        <div class="avatar" id="avatar"></div>
+        <div>
+          <div class="prospect-name" id="prospect-name"></div>
+          <div class="prospect-role" id="prospect-role"></div>
+        </div>
+      </div>
+      <div class="research-label">Research intel</div>
+      <div class="tags" id="tags"></div>
+    </div>
+
+    <div class="email-composer card-fade" id="email-composer">
+      <div class="email-header">
+        <div class="email-field">
+          <span class="email-field-label">To</span>
+          <span class="email-field-value" id="email-to"></span>
+        </div>
+        <div class="email-field">
+          <span class="email-field-label">Subject</span>
+          <span class="email-field-value" id="email-subject"></span>
+        </div>
+      </div>
+      <div class="email-body-area">
+        <div class="email-body-text" id="email-body"></div>
+      </div>
+      <div class="send-row">
+        <button class="send-btn" id="send-btn">
+          <span id="send-label">Send personalised email</span>
+        </button>
+        <span class="uniqueness-note" id="unique-note">1 of 1 ever sent</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progress-bar"></div>
+  </div>
+
+  <div class="switcher" id="switcher"></div>
+</div>
+
+<script>
+const prospects = [
+  {
+    initials: 'JM',
+    color: '#5b6ef5',
+    name: 'James Mitchell',
+    role: 'VP Sales · TechCo',
+    email: 'j.mitchell@techco.com',
+    tags: [
+      { label: 'Just raised Series B', highlight: true },
+      { label: 'Hiring 12 SDRs' },
+      { label: 'Outgrown HubSpot' },
+      { label: 'Posts about pipeline on LinkedIn', highlight: true },
+    ],
+    subject: 'Congrats on the Series B, James',
+    body: `Hi James — saw the <span class="highlight-word">Series B news</span> and the 12 SDR roles you've posted.\n\nScaling a sales team that fast usually means pipeline becomes the constraint before headcount does.\n\nWe help companies in exactly this stage fill the top of the funnel without spray-and-pray. Worth a quick chat?`,
+  },
+  {
+    initials: 'SR',
+    color: '#7c5cbf',
+    name: 'Sarah Reeves',
+    role: 'CEO · GrowthBase',
+    email: 's.reeves@growthbase.io',
+    tags: [
+      { label: 'Bootstrapped, no sales team' },
+      { label: 'Founder-led sales', highlight: true },
+      { label: 'Expanding to US market', highlight: true },
+      { label: 'SaaStr attendee' },
+    ],
+    subject: 'Founder-led sales — US expansion',
+    body: `Hi Sarah — noticed you're taking <span class="highlight-word">GrowthBase into the US</span> this year, which is exciting.\n\nMost bootstrapped founders hit the same wall: not enough hours to personally do outbound at the volume the US market demands.\n\nWe write and send <span class="highlight-word">individually researched emails</span> on your behalf — reads like you, reaches hundreds. Happy to share examples?`,
+  },
+  {
+    initials: 'DK',
+    color: '#1a8f6f',
+    name: 'David Kim',
+    role: 'CTO · Scalify',
+    email: 'd.kim@scalify.com',
+    tags: [
+      { label: 'Recently left Stripe', highlight: true },
+      { label: 'Building dev-tools startup' },
+      { label: 'Technical buyer', highlight: true },
+      { label: 'Published OSS project' },
+    ],
+    subject: "Your OSS project + Scalify's go-to-market",
+    body: `Hi David — I came across your <span class="highlight-word">open-source project</span> and then found Scalify. Impressive pivot from Stripe.\n\nTechnical founders often underestimate how much early B2B pipeline comes from deliberate outreach to the right 50 people — not 5,000.\n\nThat's exactly our model. Would love to show you what a <span class="highlight-word">tailored campaign</span> looks like for a dev-tools ICP.`,
+  },
+];
+
+let current = 0;
+let animTimeout = [];
+
+function clearTimers() { animTimeout.forEach(clearTimeout); animTimeout = []; }
+function delay(fn, ms) { const t = setTimeout(fn, ms); animTimeout.push(t); return t; }
+
+const switcher = document.getElementById('switcher');
+prospects.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'switcher-dot' + (i === 0 ? ' active' : '');
+  d.id = `dot-${i}`;
+  switcher.appendChild(d);
+});
+
+function typeInto(el, html, msPerChar, cb) {
+  el.innerHTML = '';
+  const temp = document.createElement('div');
+  temp.innerHTML = html;
+  const fullText = temp.textContent;
+  let charIndex = 0;
+  const totalChars = fullText.length;
+
+  function tick() {
+    charIndex++;
+    el.innerHTML = revealChars(html, charIndex) + '<span class="cursor"></span>';
+    if (charIndex < totalChars) {
+      const t = setTimeout(tick, msPerChar + (Math.random() * msPerChar * 0.5));
+      animTimeout.push(t);
+    } else {
+      el.innerHTML = html;
+      if (cb) cb();
+    }
+  }
+  tick();
+}
+
+function revealChars(htmlStr, count) {
+  let result = '';
+  let i = 0;
+  let visible = 0;
+  while (i < htmlStr.length && visible < count) {
+    if (htmlStr[i] === '<') {
+      const close = htmlStr.indexOf('>', i);
+      if (close === -1) break;
+      result += htmlStr.slice(i, close + 1);
+      i = close + 1;
+    } else if (htmlStr[i] === '&') {
+      const semi = htmlStr.indexOf(';', i);
+      if (semi !== -1 && semi - i <= 7) {
+        result += htmlStr.slice(i, semi + 1);
+        i = semi + 1;
+        visible++;
+      } else {
+        result += htmlStr[i++];
+        visible++;
+      }
+    } else {
+      result += htmlStr[i++];
+      visible++;
+    }
+  }
+  return result;
+}
+
+function runProspect(idx) {
+  const p = prospects[idx];
+  clearTimers();
+
+  prospects.forEach((_, i) => {
+    document.getElementById(`dot-${i}`).className = 'switcher-dot' + (i === idx ? ' active' : '');
+  });
+
+  const bar = document.getElementById('progress-bar');
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+
+  document.getElementById('prospect-card').classList.add('hidden');
+  document.getElementById('email-composer').classList.add('hidden');
+
+  delay(() => {
+    const av = document.getElementById('avatar');
+    av.textContent = p.initials;
+    av.style.background = p.color;
+
+    document.getElementById('prospect-name').textContent = p.name;
+    document.getElementById('prospect-role').textContent = p.role;
+
+    const tagsEl = document.getElementById('tags');
+    tagsEl.innerHTML = '';
+
+    document.getElementById('email-to').textContent = '';
+    document.getElementById('email-subject').textContent = '';
+    document.getElementById('email-body').innerHTML = '';
+    document.getElementById('send-btn').className = 'send-btn';
+    document.getElementById('send-label').textContent = 'Send personalised email';
+
+    document.getElementById('prospect-card').classList.remove('hidden');
+    document.getElementById('email-composer').classList.remove('hidden');
+
+    let tagDelay = 300;
+    p.tags.forEach((tag) => {
+      const span = document.createElement('span');
+      span.className = 'tag' + (tag.highlight ? ' highlight' : '');
+      span.textContent = tag.label;
+      tagsEl.appendChild(span);
+      delay(() => span.classList.add('visible'), tagDelay);
+      tagDelay += 280;
+    });
+
+    const afterTags = tagDelay + 200;
+
+    delay(() => {
+      typeInto(document.getElementById('email-to'), p.email, 28, () => {
+        delay(() => {
+          typeInto(document.getElementById('email-subject'), p.subject, 22, () => {
+            delay(() => {
+              typeInto(document.getElementById('email-body'), p.body.replace(/\n/g, '<br>'), 14, () => {
+                delay(() => {
+                  const btn = document.getElementById('send-btn');
+                  btn.classList.add('sending');
+                  document.getElementById('send-label').textContent = 'Sent ✓';
+
+                  const CYCLE = 2400;
+                  delay(() => {
+                    bar.style.transition = `width ${CYCLE}ms linear`;
+                    bar.style.width = '100%';
+                  }, 100);
+
+                  delay(() => {
+                    runProspect((idx + 1) % prospects.length);
+                  }, CYCLE + 200);
+                }, 500);
+              });
+            }, 200);
+          });
+        }, 300);
+      });
+    }, afterTags);
+  }, 350);
+}
+
+runProspect(0);
+</script>
+</body>
+</html>
