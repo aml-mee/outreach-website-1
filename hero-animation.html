@@ -11,7 +11,7 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #1a35d4 0%, #2c4de8 40%, #1e3ac9 100%);
+    background: transparent;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -22,12 +22,12 @@
   /* ── Panel shell ── */
   .panel {
     width: 420px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 16px;
-    backdrop-filter: blur(20px);
-    overflow: hidden;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05) inset;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: none;
+    overflow: visible;
+    box-shadow: none;
   }
 
   .panel-titlebar {
@@ -317,7 +317,7 @@ const prospects = [
       { label: 'Speaking at LogiTech Summit' },
     ],
     subject: 'EU expansion + the carrier gap',
-    body: `Hi Rachel — I saw FreightPath is pushing into <span class="highlight-word">EU cross-border routes</span> this year, and noticed the recent carrier contract news.\n\nThat's a tough combination — new market, tighter capacity.\n\nOur client Movefast used targeted outreach to sign <span class="highlight-word">three new 3PL partners</span> in under 60 days in a similar position. Worth a conversation?`,
+    body: `Hi Rachel — saw FreightPath is pushing into <span class="highlight-word">EU cross-border routes</span> this year, and noticed the recent carrier contract news.\n\nThat's a tough combination — new market, tighter capacity.\n\nOur client Movefast signed <span class="highlight-word">three new 3PL partners</span> in under 60 days in a similar spot. Worth a conversation?`,
   },
   {
     initials: 'MB',
@@ -332,7 +332,7 @@ const prospects = [
       { label: 'No dedicated BD resource', highlight: true },
     ],
     subject: 'BD for PE-focused practices',
-    body: `Hi Marcus — congratulations on the two recent partner promotions at Bell & Crane.\n\nGrowing a <span class="highlight-word">PE-focused M&A practice</span> without a dedicated BD team is a real bandwidth problem — the best mandates rarely come from cold directories.\n\nWe run quiet, <span class="highlight-word">research-led outreach</span> to CFOs and GCs at PE-backed businesses on behalf of firms like yours. Happy to share how it works?`,
+    body: `Hi Marcus — congrats on the two new partner promotions.\n\nGrowing a <span class="highlight-word">PE-focused M&A practice</span> without dedicated BD is tough — the best mandates rarely come from directories.\n\nWe run <span class="highlight-word">research-led outreach</span> to CFOs and GCs at PE-backed businesses on behalf of firms like yours. Worth a chat?`,
   },
   {
     initials: 'PN',
