@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — AlwaysOutreach</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; }
+    .font-display { font-family: 'Sora', sans-serif !important; }
+
+    .nav-glass {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #1B44C8; border-radius: 999px; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-gray-100/80">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex items-center justify-between h-[68px]">
+        <a href="index.html" class="flex-shrink-0">
+          <img src="brand_assets/alwaysoutreach-logo.png" alt="AlwaysOutreach" class="h-14 w-auto" />
+        </a>
+        <a href="index.html"
+           class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-lg
+                  active:scale-[0.97] hover:brightness-110 transition-all duration-150"
+           style="background: #1B44C8; box-shadow: 0 2px 12px rgba(27,68,200,0.38);">
+          Home
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden grain pt-32 pb-20"
+           style="background: linear-gradient(138deg, #081640 0%, #1B44C8 55%, #0e2480 100%);">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-[-15%] right-[-8%] w-[50vw] h-[50vw] rounded-full"
+           style="background: radial-gradient(circle, rgba(99,140,255,0.25) 0%, transparent 65%);"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-400/25 bg-blue-400/10 mb-7">
+        <span class="text-[11px] font-bold text-blue-200 tracking-[0.12em] uppercase">Get In Touch</span>
+      </div>
+      <h1 class="font-display text-4xl lg:text-6xl font-bold text-white tracking-[-0.03em] leading-[1.05]">
+        Contact us
+      </h1>
+    </div>
+  </section>
+
+  <!-- CONTACT DETAILS -->
+  <section class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6 lg:px-10">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Email -->
+        <div class="reveal rounded-2xl p-8 border border-gray-100"
+             style="box-shadow: 0 2px 20px rgba(27,68,200,0.06);">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
+               style="background: #e0e9ff;">
+            <svg class="w-5 h-5" style="color: #1B44C8;" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div class="text-[11px] font-bold tracking-[0.12em] uppercase mb-2" style="color: #1B44C8;">Email</div>
+          <p class="text-sm text-gray-500 mb-3">You can reach us at:</p>
+          <a href="mailto:a.lee@alwaysoutreach.com"
+             class="font-semibold text-gray-900 hover:text-[#1B44C8] transition-colors duration-200 break-all">
+            a.lee@alwaysoutreach.com
+          </a>
+        </div>
+
+        <!-- Phone -->
+        <div class="reveal rounded-2xl p-8 border border-gray-100"
+             style="box-shadow: 0 2px 20px rgba(27,68,200,0.06);">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
+               style="background: #e0e9ff;">
+            <svg class="w-5 h-5" style="color: #1B44C8;" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <div class="text-[11px] font-bold tracking-[0.12em] uppercase mb-2" style="color: #1B44C8;">Phone</div>
+          <a href="tel:02087983411"
+             class="font-semibold text-gray-900 hover:text-[#1B44C8] transition-colors duration-200">
+            020 8798 3411
+          </a>
+        </div>
+
+        <!-- Address -->
+        <div class="reveal rounded-2xl p-8 border border-gray-100 md:col-span-2"
+             style="box-shadow: 0 2px 20px rgba(27,68,200,0.06);">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
+               style="background: #e0e9ff;">
+            <svg class="w-5 h-5" style="color: #1B44C8;" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div class="text-[11px] font-bold tracking-[0.12em] uppercase mb-2" style="color: #1B44C8;">Registered Address</div>
+          <p class="font-semibold text-gray-900">
+            Alastair Lee Ltd trading as Always Outreach<br />
+            Quay House, Quay Road<br />
+            Newton Abbot, Devon<br />
+            UK, TQ12 2BU
+          </p>
+        </div>
+
+        <!-- Company details -->
+        <div class="reveal rounded-2xl p-8 border border-gray-100"
+             style="box-shadow: 0 2px 20px rgba(27,68,200,0.06);">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
+               style="background: #e0e9ff;">
+            <svg class="w-5 h-5" style="color: #1B44C8;" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="text-[11px] font-bold tracking-[0.12em] uppercase mb-4" style="color: #1B44C8;">Company Details</div>
+          <div class="space-y-3">
+            <div>
+              <p class="text-xs text-gray-400 font-medium mb-0.5">Company Registration Number</p>
+              <p class="font-semibold text-gray-900">06331805</p>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-medium mb-0.5">VAT Registration Number</p>
+              <p class="font-semibold text-gray-900">880 0206 54</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="reveal rounded-2xl p-8 relative overflow-hidden grain"
+             style="background: linear-gradient(148deg, #1B44C8 0%, #091e6e 100%);">
+          <div class="absolute top-0 right-0 w-40 h-40 rounded-full pointer-events-none"
+               style="background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 65%); transform: translate(35%,-35%);"></div>
+          <div class="relative z-10">
+            <p class="text-white font-semibold text-lg leading-snug mb-4">Ready to see what we can do?</p>
+            <a href="the-process.html"
+               class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-[#1B44C8] bg-white rounded-xl
+                      hover:bg-blue-50 active:scale-[0.97] transition-all duration-150"
+               style="box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+              Get Started
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: #070f2b;" class="text-gray-500 py-14">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-10 pb-10 border-b border-white/5">
+        <div class="flex flex-col items-center md:items-start gap-4">
+          <img src="brand_assets/alwaysoutreach-logo.png" alt="AlwaysOutreach" class="h-12 w-auto rounded-lg" />
+          <p class="text-sm text-gray-500 max-w-[280px] text-center md:text-left leading-[1.75]">
+            B2B outreach specialists helping companies fill their pipeline with qualified meetings.
+          </p>
+        </div>
+        <div class="flex flex-col items-center md:items-end gap-4">
+          <div class="flex items-center gap-6">
+            <a href="index.html" class="text-sm hover:text-white transition-colors duration-200">Home</a>
+            <a href="index.html#services" class="text-sm hover:text-white transition-colors duration-200">Services</a>
+            <a href="the-process.html" class="text-sm hover:text-white transition-colors duration-200">The Process</a>
+            <a href="contact.html" class="text-sm hover:text-white transition-colors duration-200">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 text-center text-xs text-gray-600">
+        &copy; 2026 AlwaysOutreach. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>

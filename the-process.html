@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Process — AlwaysOutreach</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; }
+    .font-display { font-family: 'Sora', sans-serif !important; }
+
+    .nav-glass {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .prose-body {
+      font-size: 1.0625rem;
+      line-height: 1.85;
+      color: #374151;
+    }
+    .prose-body p { margin-bottom: 1.5rem; }
+    .prose-body strong { color: #111827; font-weight: 600; }
+    .prose-body em { font-style: italic; color: #1B44C8; }
+
+    @keyframes throb {
+      0%, 100% { transform: scale(1); color: #ef4444; }
+      50% { transform: scale(1.15); color: #b91c1c; }
+    }
+    .throb { display: inline-block; animation: throb 1.2s ease-in-out infinite; }
+
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #1B44C8; border-radius: 999px; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-gray-100/80">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex items-center justify-between h-[68px]">
+        <a href="index.html" class="flex-shrink-0">
+          <img src="brand_assets/alwaysoutreach-logo.png" alt="AlwaysOutreach" class="h-14 w-auto" />
+        </a>
+        <a href="index.html"
+           class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-lg
+                  active:scale-[0.97] hover:brightness-110 transition-all duration-150"
+           style="background: #1B44C8; box-shadow: 0 2px 12px rgba(27,68,200,0.38);">
+          Home
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden grain pt-32 pb-20"
+           style="background: linear-gradient(138deg, #081640 0%, #1B44C8 55%, #0e2480 100%);">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-[-15%] right-[-8%] w-[50vw] h-[50vw] rounded-full"
+           style="background: radial-gradient(circle, rgba(99,140,255,0.25) 0%, transparent 65%);"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-400/25 bg-blue-400/10 mb-7">
+        <span class="text-[11px] font-bold text-blue-200 tracking-[0.12em] uppercase">The AlwaysOutreach Process</span>
+      </div>
+      <h1 class="font-display text-4xl lg:text-6xl font-bold text-white tracking-[-0.03em] leading-[1.05] mb-6">
+        Why talk about how we can help you, when we can <em class="not-italic" style="color: #93c5fd;">show you?</em>
+      </h1>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <article class="max-w-2xl mx-auto px-6 lg:px-8 py-20">
+
+    <!-- Offer -->
+    <div class="reveal mb-16">
+      <div class="rounded-2xl p-8 border border-[#1B44C8]/20"
+           style="background: #f6f8ff; box-shadow: 0 4px 32px rgba(27,68,200,0.08);">
+        <div class="inline-flex items-center px-3 py-1 rounded-full mb-5"
+             style="background: #e0e9ff; color: #1B44C8;">
+          <span class="text-[11px] font-bold tracking-[0.12em] uppercase">The Offer</span>
+        </div>
+        <p class="font-display text-2xl font-bold text-gray-900 leading-snug mb-4">
+          Let us write 5 free outreach emails for you.
+        </p>
+        <p class="text-gray-600 leading-[1.8]">
+          There are no strings attached, and you'll see firsthand what the process is. All you need to do is answer one simple question:
+        </p>
+        <p class="font-display text-xl font-bold mt-5" style="color: #1B44C8;">
+          Who is your perfect prospect and why?
+        </p>
+      </div>
+    </div>
+
+    <!-- How it works -->
+    <div class="prose-body reveal mb-16">
+      <p>With this information we'll build a prospect list with validated emails, research the prospects and write unique mails to each of them.</p>
+      <p>These are sent to you in a PDF format. If you like what you see, you can copy, paste and hit send to each contact.</p>
+      <p class="font-display text-2xl font-bold text-gray-900">It's easy.</p>
+      <div class="rounded-2xl p-8 relative overflow-hidden grain mt-6 mb-3"
+           style="background: linear-gradient(148deg, #1B44C8 0%, #091e6e 100%);">
+        <div class="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none"
+             style="background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 65%); transform: translate(35%,-35%);"></div>
+        <div class="relative z-10">
+          <p style="color: white;" class="text-lg leading-[1.8] mb-0">
+            Because they are your perfect prospects, it only takes <strong style="color: white;">one reply</strong> to lead to one meeting which could <strong style="color: white;">utterly transform your sales pipeline.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- No tire-kickers -->
+    <div class="prose-body reveal mb-16" style="margin-top: -2rem;">
+      <p>It's an approach that works because there are no tire-kickers, price shoppers or prospects who are already talking to three of your competitors and treating you like a commodity.</p>
+      <p>They are your ideal prospects — the kind who don't argue about price and make decisions quickly because they already understand the value.</p>
+      <p>This isn't theory either — We've been doing this for <strong>over 20 years</strong>. And it works for one simple reason:</p>
+      <p>It puts you somewhere your competitors can't go — <strong>directly in front of senior decision-makers</strong> without sounding like every other unsolicited pitch cluttering their inbox.</p>
+      <p>Let's be honest. Most sales activity screams <em>"unsolicited."</em> And senior people have an almost supernatural ability to ignore that.</p>
+      <p class="font-display text-xl font-bold text-gray-900 not-prose">Delete. Ignore. Block. Repeat.</p>
+      <p>What you actually need is something strong enough to stop them mid-scroll and think:</p>
+      <blockquote class="border-l-4 pl-6 my-4 font-display text-2xl font-bold text-gray-900 leading-snug"
+                  style="border-color: #1B44C8;">
+        "Huh. That's interesting."
+      </blockquote>
+      <p>Not "Who is this?". Not "What do they want?"</p>
+      <p class="font-semibold text-gray-900">But <em>interest.</em></p>
+      <p>That's where we come in.</p>
+      <p>Our process creates the kind of meetings your sales team usually burns months of effort — and vast expense — trying to get.</p>
+      <p class="font-medium text-gray-700">Meetings that normally require:</p>
+      <ul class="space-y-3 mb-6">
+        <li class="flex items-center gap-3 text-gray-600">
+          <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background: #1B44C8;"></span>
+          endless follow-ups
+        </li>
+        <li class="flex items-center gap-3 text-gray-600">
+          <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background: #1B44C8;"></span>
+          warm introductions
+        </li>
+        <li class="flex items-center gap-3 text-gray-600">
+          <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background: #1B44C8;"></span>
+          expensive events
+        </li>
+        <li class="flex items-center gap-3 text-gray-600">
+          <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background: #1B44C8;"></span>
+          and a lot of crossed fingers
+        </li>
+      </ul>
+      <p>Instead, this approach <strong>engineers attention.</strong></p>
+      <p>It starts with a <strong>perfectly timed, carefully crafted message</strong> designed to hit your ideal prospect right between the eyes.</p>
+      <p>No fluff. No pitching. No begging for a call.</p>
+      <p>Just relevance, timing, and psychology doing the heavy lifting.</p>
+      <p>Is that easy to pull off in today's noise-filled world?</p>
+      <p class="font-display text-3xl font-bold text-gray-900">No.</p>
+      <p class="font-display text-lg font-bold italic" style="color: #1B44C8;">But if it didn't work you wouldn't still be reading this.</p>
+      <p>Now let me guess what you're thinking: "That wouldn't work for us."</p>
+      <p>Of course you are. Every client we've ever worked with thought exactly the same thing.</p>
+      <p>Everyone believes their business is different. Everyone believes their market is special. Everyone believes <em class="not-italic font-semibold text-gray-700">their</em> prospects won't respond.</p>
+      <p>Maybe your business <strong>is</strong> special.</p>
+      <p>But your customers?</p>
+      <p class="font-display text-2xl font-bold text-gray-900">They're human.</p>
+      <p>And humans respond to the same proven psychology they always have.</p>
+      <p>I know this because I've used this process across a wide range of industries — and it keeps working.</p>
+      <p>Different markets. Different offers. Different price points.</p>
+      <p>Same result — if you sell something <strong>complex, expensive or have a long sales cycle</strong> (if you have all three we really should talk).</p>
+    </div>
+
+    <!-- Who hires us -->
+    <div class="reveal mb-16 rounded-2xl p-8 relative overflow-hidden grain"
+         style="background: linear-gradient(148deg, #1B44C8 0%, #091e6e 100%);">
+      <div class="relative z-10">
+        <p class="text-blue-200 text-sm font-semibold tracking-widest uppercase mb-4">Who hires us</p>
+        <p class="text-white text-lg leading-[1.8] mb-4">The companies who hire us aren't struggling. They're already successful. They're already doing well.</p>
+        <p class="text-white text-lg leading-[1.8] mb-0">They just want <strong class="text-white">better clients</strong>, <strong class="text-white">bigger deals</strong>, and <strong class="text-white">less friction</strong> in their sales process. They want fewer conversations — and better ones.</p>
+      </div>
+    </div>
+
+    <div class="prose-body reveal mb-16">
+      <p class="font-display text-xl font-bold text-gray-900">Does that sound familiar?</p>
+      <p>If you want a sales pipeline filled with <strong>dream prospects</strong>, we should talk.</p>
+      <p>Because chasing the same leads as your competitors will never land you the 'whale' that actually changes your numbers.</p>
+      <p>Our process is proven. It's tested. And it consistently gets whales emailing <em class="not-italic font-semibold text-gray-700">you</em> or picking up the phone.</p>
+      <p>What's more, it's nothing fancy. No complex funnels. No shiny objects. No "growth hacks."</p>
+      <p>Just a short sequence of <strong>well-crafted emails</strong>, sent to a very specific list of people who could absolutely obliterate your sales targets.</p>
+      <p>The power is in <strong>what's said</strong>, <strong>when it's said</strong>, and <strong>how the follow-ups are handled</strong>.</p>
+      <p>That's where this is completely different from what everyone else — including your competitors — is doing.</p>
+      <p>Since you've made it this far, let me show you how this can be working for you in a matter of weeks.</p>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="reveal rounded-3xl overflow-hidden relative grain text-center"
+         style="background: linear-gradient(148deg, #1B44C8 0%, #081640 100%); padding: 64px 48px;">
+      <div class="absolute top-0 right-0 w-[60%] h-full pointer-events-none"
+           style="background: radial-gradient(circle at 80% 30%, rgba(147,197,253,0.10) 0%, transparent 60%);"></div>
+      <div class="relative z-10">
+        <h2 class="font-display text-3xl lg:text-4xl font-bold text-white tracking-[-0.03em] leading-[1.15] mb-5">
+          Tell us who your perfect prospects are and why.<br />
+          <span style="color: #93c5fd;">We'll do the rest.</span>
+        </h2>
+        <p class="text-blue-100/90 text-base leading-[1.8] mb-8 max-w-lg mx-auto">
+          Just hit the button below. No need for any intro or small talk — answer the question and let us show you how painless, quick and effective this process is.
+        </p>
+        <a href="mailto:a.lee@alwaysoutreach.com"
+           class="inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-[#1B44C8] bg-white rounded-xl
+                  hover:bg-blue-50 active:scale-[0.97] transition-transform duration-150"
+           style="box-shadow: 0 4px 32px rgba(0,0,0,0.25);">
+          <span class="throb">Click here and tell us who your perfect prospects are</span>
+        </a>
+        <p class="text-blue-300/70 text-sm mt-5">No need for an intro or smalltalk. Just the answer. We'll do the rest.</p>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- FOOTER -->
+  <footer style="background: #070f2b;" class="text-gray-500 py-14">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-10 pb-10 border-b border-white/5">
+        <div class="flex flex-col items-center md:items-start gap-4">
+          <img src="brand_assets/alwaysoutreach-logo.png" alt="AlwaysOutreach" class="h-12 w-auto rounded-lg" />
+          <p class="text-sm text-gray-500 max-w-[280px] text-center md:text-left leading-[1.75]">
+            B2B outreach specialists helping companies fill their pipeline with qualified meetings.
+          </p>
+        </div>
+        <div class="flex flex-col items-center md:items-end gap-4">
+          <div class="flex items-center gap-6">
+            <a href="index.html" class="text-sm hover:text-white transition-colors duration-200">Home</a>
+            <a href="index.html#services" class="text-sm hover:text-white transition-colors duration-200">Services</a>
+            <a href="index.html#process" class="text-sm hover:text-white transition-colors duration-200">Process</a>
+            <a href="contact.html" class="text-sm hover:text-white transition-colors duration-200">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 text-center text-xs text-gray-600">
+        &copy; 2026 AlwaysOutreach. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
