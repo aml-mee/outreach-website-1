@@ -43,6 +43,16 @@
       -webkit-backdrop-filter: blur(20px);
     }
 
+    @keyframes throb {
+      0%, 100% { transform: scale(1); color: #ef4444; }
+      50% { transform: scale(1.18); color: #b91c1c; }
+    }
+    .throb {
+      display: inline-block;
+      animation: throb 1.2s ease-in-out infinite;
+      transform-origin: center;
+    }
+
     /* Custom scrollbar */
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -66,7 +76,6 @@
           <a href="#services"      class="text-sm font-medium text-gray-600 hover:text-[#1B44C8] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1B44C8] rounded">Services</a>
           <a href="#process"       class="text-sm font-medium text-gray-600 hover:text-[#1B44C8] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1B44C8] rounded">How It Works</a>
           <a href="#results"       class="text-sm font-medium text-gray-600 hover:text-[#1B44C8] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1B44C8] rounded">Results</a>
-          <a href="#testimonials"  class="text-sm font-medium text-gray-600 hover:text-[#1B44C8] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1B44C8] rounded">Testimonials</a>
         </div>
 
         <a href="mailto:a.lee@alwaysoutreach.com"
@@ -680,7 +689,7 @@
           </h2>
 
           <p class="text-blue-100/90 text-lg leading-[1.8] mb-9 max-w-[560px] mx-auto">
-            Book a free 30-minute strategy call. We'll audit your outreach, identify the gaps, and walk you through exactly how we'd approach your market.
+            Don't book a free 30-minute strategy call. There's a quicker way to see exactly how we start conversations with your dream prospects.
           </p>
 
           <a href="mailto:a.lee@alwaysoutreach.com"
@@ -688,13 +697,13 @@
                     hover:bg-blue-50 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white
                     transition-transform duration-150"
              style="box-shadow: 0 4px 32px rgba(0,0,0,0.25);">
-            Book Your Free Strategy Call
+            <span class="throb">Don't</span> book your free strategy call. &nbsp; Do this instead.
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
 
-          <p class="text-blue-300/70 text-sm mt-5">No commitment. No sales pitch. Just strategy.</p>
+          <p class="text-blue-300/70 text-sm mt-5">No commitment. No sales pitch. Just results.</p>
         </div>
       </div>
     </div>
@@ -723,7 +732,6 @@
             <a href="#services"     class="text-sm hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1B44C8]">Services</a>
             <a href="#process"      class="text-sm hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1B44C8]">Process</a>
             <a href="#results"      class="text-sm hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1B44C8]">Results</a>
-            <a href="#testimonials" class="text-sm hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1B44C8]">Testimonials</a>
           </div>
         </div>
 
