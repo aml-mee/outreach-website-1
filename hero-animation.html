@@ -11,7 +11,7 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background: transparent;
+    background: linear-gradient(135deg, #1a35d4 0%, #2c4de8 40%, #1e3ac9 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -22,12 +22,12 @@
   /* ── Panel shell ── */
   .panel {
     width: 420px;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    backdrop-filter: none;
-    overflow: visible;
-    box-shadow: none;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05) inset;
   }
 
   .panel-titlebar {
@@ -305,64 +305,49 @@
 <script>
 const prospects = [
   {
-    initials: 'RT',
+    initials: 'DW',
     color: '#2a6db5',
-    name: 'Rachel Torres',
-    role: 'Head of Partnerships · FreightPath',
-    email: 'r.torres@freightpath.com',
+    name: 'Daniel Walsh',
+    role: 'Head of Supply Chain · Nortek Manufacturing',
+    email: 'd.walsh@nortekmfg.com',
     tags: [
-      { label: 'Cross-border logistics', highlight: true },
-      { label: 'Expanding into EU corridors' },
-      { label: 'Just lost major carrier contract', highlight: true },
-      { label: 'Speaking at LogiTech Summit' },
+      { label: '3 UK plants, 600+ staff' },
+      { label: 'Current carrier underperforming', highlight: true },
+      { label: 'Q3 contract up for renewal', highlight: true },
+      { label: 'Expanding to overnight delivery' },
     ],
-    subject: 'EU expansion + the carrier gap',
-    body: `Hi Rachel — saw FreightPath is pushing into <span class="highlight-word">EU cross-border routes</span> this year, and noticed the recent carrier contract news.\n\nThat's a tough combination — new market, tighter capacity.\n\nOur client Movefast signed <span class="highlight-word">three new 3PL partners</span> in under 60 days in a similar spot. Worth a conversation?`,
+    subject: "Nortek's Q3 carrier renewal",
+    body: `Hi Daniel — I noticed Nortek\u2019s <span class="highlight-word">carrier contract is up for renewal in Q3</span>, and with three plants running and overnight delivery on the roadmap, getting the right partner in place matters.\n\nFrom what I can see, your current carrier has been struggling on reliability — that\u2019s a hard problem to scale around.\n\nWe work exclusively with <span class="highlight-word">manufacturers at your scale</span> and typically cut missed delivery windows by over a third in the first 90 days.\n\nWorth a call before you default to a renewal?`,
   },
   {
-    initials: 'MB',
+    initials: 'KH',
     color: '#7c5cbf',
-    name: 'Marcus Bell',
-    role: 'Managing Partner · Bell & Crane LLP',
-    email: 'm.bell@bellandcrane.com',
+    name: 'Karen Hughes',
+    role: 'Marketing Director · Bramble Foods',
+    email: 'k.hughes@bramblefoods.co.uk',
     tags: [
-      { label: 'M&A and corporate law' },
-      { label: 'Targeting PE-backed mid-market', highlight: true },
-      { label: 'Just promoted two partners' },
-      { label: 'No dedicated BD resource', highlight: true },
+      { label: 'FMCG, 8 product lines' },
+      { label: 'Launching into Costco', highlight: true },
+      { label: 'No agency since Jan', highlight: true },
+      { label: 'Strong TikTok following' },
     ],
-    subject: 'BD for PE-focused practices',
-    body: `Hi Marcus — congrats on the two new partner promotions.\n\nGrowing a <span class="highlight-word">PE-focused M&A practice</span> without dedicated BD is tough — the best mandates rarely come from directories.\n\nWe run <span class="highlight-word">research-led outreach</span> to CFOs and GCs at PE-backed businesses on behalf of firms like yours. Worth a chat?`,
+    subject: "Bramble's Costco launch — creative support",
+    body: `Hi Karen — saw that Bramble is <span class="highlight-word">launching into Costco</span> this year — a big move, especially without an agency on board since January.\n\nCostco shoppers buy differently to your TikTok audience. The pack shots, the shelf presence, the messaging — it all needs rethinking for a <span class="highlight-word">warehouse retail environment</span>.\n\nWe\u2019ve taken three food brands through grocery retail launches in the last 12 months. I\u2019d love to show you what we did for a similar FMCG brand making the same leap.\n\nGot 20 minutes this week?`,
   },
   {
-    initials: 'PN',
+    initials: 'TC',
     color: '#1a8f6f',
-    name: 'Priya Nair',
-    role: 'CEO · Kova Health',
-    email: 'p.nair@kovahealth.io',
+    name: 'Tom Clarke',
+    role: 'HR Director · Caldwell Group',
+    email: 't.clarke@caldwellgroup.co.uk',
     tags: [
-      { label: 'Digital health platform' },
-      { label: 'Targeting NHS trusts', highlight: true },
-      { label: 'NICE approval pending', highlight: true },
-      { label: 'Team of 18, no sales hire yet' },
+      { label: '1,200 employees, 14 sites' },
+      { label: 'Opening 3 new depots in 2025', highlight: true },
+      { label: 'PSL under review', highlight: true },
+      { label: 'Struggling with ops management hires' },
     ],
-    subject: 'NHS pipeline ahead of NICE approval',
-    body: `Hi Priya — Kova's NICE submission caught my eye. That's a major milestone.\n\nThe window between approval and widespread adoption is where most health-tech companies lose ground — NHS procurement cycles are long, and <span class="highlight-word">relationships need to start now</span>.\n\nWe help companies like yours open doors with the right <span class="highlight-word">trust procurement leads</span> before the market gets crowded. Worth exploring?`,
-  },
-  {
-    initials: 'OA',
-    color: '#b5522a',
-    name: 'Oliver Adeyemi',
-    role: 'Director · Adeyemi Structural',
-    email: 'o.adeyemi@adeyemistructural.co.uk',
-    tags: [
-      { label: 'Structural engineering firm' },
-      { label: 'Targeting housebuilders', highlight: true },
-      { label: 'Just hired 4 engineers' },
-      { label: 'Capacity to take on 6 new projects', highlight: true },
-    ],
-    subject: 'Structural capacity → housebuilder pipeline',
-    body: `Hi Oliver — I noticed Adeyemi Structural has grown the team recently and has <span class="highlight-word">capacity for new project work</span>.\n\nMost structural firms we speak to win work through referrals alone — which is great until it isn't.\n\nWe've helped similar practices open direct conversations with <span class="highlight-word">regional housebuilders and developers</span> who are actively tendering. Would it be useful to see how?`,
+    subject: 'Ops management hiring across your new depots',
+    body: `Hi Tom — I came across Caldwell\u2019s plans to <span class="highlight-word">open three new depots this year</span>, and with 14 sites already running, I imagine ops management hiring is one of your bigger headaches right now.\n\nPSL reviews at businesses your size often stall on one thing: not enough specialists who actually understand <span class="highlight-word">distribution and multi-site logistics leadership</span>.\n\nThat\u2019s exactly our niche — and we\u2019re already placing in two of your target regions. Worth a conversation before the roles go live?`,
   },
 ];
 
