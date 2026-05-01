@@ -156,7 +156,7 @@
           scrolling="no"
           allowtransparency="true"
           frameborder="0"
-          style="width: 420px; height: 560px; border: none; background: transparent; display: block;">
+          style="width: 420px; height: 680px; border: none; background: transparent; display: block;">
         </iframe>
       </div>
     </div>
@@ -740,6 +740,14 @@
 
   <script>
     // Scroll reveal
+    // Auto-resize hero animation iframe
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.iframeHeight) {
+        const iframe = document.querySelector('iframe[src="hero-animation.html"]');
+        if (iframe) iframe.style.height = e.data.iframeHeight + 'px';
+      }
+    });
+
     const revealObs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });

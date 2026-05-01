@@ -11,12 +11,12 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #1a35d4 0%, #2c4de8 40%, #1e3ac9 100%);
-    min-height: 100vh;
+    background: transparent;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 24px;
+    padding: 0;
+    margin: 0;
   }
 
   /* ── Panel shell ── */
@@ -520,6 +520,11 @@ function runProspect(idx) {
 }
 
 runProspect(0);
+
+// Auto-report height to parent so iframe resizes dynamically
+setInterval(() => {
+  window.parent.postMessage({ iframeHeight: document.body.scrollHeight }, '*');
+}, 150);
 </script>
 </body>
 </html>
