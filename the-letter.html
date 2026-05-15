@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Letter — AlwaysOutreach Field Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --blue:#1B44C8;
+    --blue-2:#2553D4;
+    --blue-deep:#091e6e;
+    --blue-deeper:#0c1f5e;
+    --navy:#081640;
+    --navy-2:#070f2b;
+    --blue-glow:#638cff;
+    --blue-pale:#dbeafe;
+    --blue-pale-2:#93c5fd;
+    --blue-bg:#f6f8ff;
+    --blue-bg-2:#f0f4ff;
+    --blue-chip:#e0e9ff;
+    --ink:#0f172a;
+    --ink-2:#1e293b;
+    --ink-3:#475569;
+    --ink-4:#64748b;
+    --line:#e2e8f0;
+    --white:#ffffff;
+    --paper:#faf6ec;    /* letter paper */
+    --paper-ink:#1a1612;
+    --stamp:#a13b2f;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html,body{margin:0;background:var(--white);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  body{font-size:17px;line-height:1.6;}
+  .font-display{font-family:'Sora',sans-serif;}
+  .mono{font-family:ui-monospace,'SF Mono',Menlo,monospace;}
+  img{max-width:100%;display:block;}
+
+  /* --- shared chrome --- */
+  .container{max-width:1280px;margin:0 auto;padding:0 40px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--blue-chip);color:var(--blue);
+    padding:7px 14px;border-radius:999px;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  }
+  .chip.on-dark{background:rgba(255,255,255,.15);color:#fff;}
+  .grain{position:relative;}
+  .grain::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:.5;mix-blend-mode:overlay;z-index:1;
+  }
+  .grain > *{position:relative;z-index:2;}
+
+  /* --- NAV --- */
+  nav.top{
+    position:absolute;top:0;left:0;right:0;z-index:50;
+    padding:24px 40px;display:flex;align-items:center;justify-content:space-between;
+  }
+  nav.top .logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.01em;}
+  nav.top .logo img{height:32px;width:auto;filter:brightness(0) invert(1);}
+  nav.top .links{display:flex;gap:32px;align-items:center;}
+  nav.top .links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;font-weight:500;}
+  nav.top .links a:hover{color:#fff;}
+  nav.top .cta{
+    background:#fff;color:var(--blue);padding:10px 18px;border-radius:999px;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:13px;text-decoration:none;
+    box-shadow:0 2px 12px rgba(0,0,0,.18);
+  }
+
+  /* --- HERO --- */
+  .hero{
+    background:linear-gradient(138deg,#081640 0%, #1B44C8 55%, #0e2480 100%);
+    color:#fff;
+    padding:160px 0 120px;overflow:hidden;position:relative;
+  }
+  .hero .orb{position:absolute;border-radius:50%;pointer-events:none;}
+  .hero .orb.o1{top:-15%;right:-8%;width:55vw;height:55vw;background:radial-gradient(circle,rgba(99,140,255,.30) 0%,transparent 65%);}
+  .hero .orb.o2{bottom:-25%;left:-8%;width:45vw;height:45vw;background:radial-gradient(circle,rgba(12,32,94,.6) 0%,transparent 70%);}
+  .hero .orb.o3{top:40%;left:40%;width:30vw;height:30vw;background:radial-gradient(circle,rgba(27,68,200,.25) 0%,transparent 70%);}
+  .hero .inner{position:relative;z-index:3;display:grid;grid-template-columns:1.3fr 1fr;gap:80px;align-items:center;}
+  .hero h1{
+    font-family:'Sora',sans-serif;font-weight:800;font-size:84px;line-height:1.04;letter-spacing:-.03em;margin:0 0 28px;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(95deg,#93c5fd 0%,#dbeafe 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    font-style:italic;font-family:'Inter',serif;font-weight:400;
+  }
+  .hero .deck{font-size:21px;line-height:1.6;color:rgba(255,255,255,.85);max-width:620px;margin:0 0 36px;}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;}
+  .hero .meta-chip{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;
+    padding:8px 16px;font-size:13px;color:rgba(255,255,255,.9);font-weight:500;
+  }
+  .hero .meta-chip b{color:#fff;font-weight:700;}
+
+  /* exhibit card in hero */
+  .exhibit-card{
+    background:#fff;border-radius:14px;padding:18px;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.25);
+    transform:rotate(-2deg);
+    position:relative;
+  }
+  .exhibit-card .tape{
+    position:absolute;width:120px;height:28px;background:rgba(255,255,255,.6);
+    top:-12px;left:50%;transform:translateX(-50%) rotate(-2deg);
+  }
+  .exhibit-card .scan{border-radius:6px;overflow:hidden;background:#fff;}
+  .exhibit-card .scan img{width:100%;height:auto;display:block;}
+  .exhibit-card .caption{
+    margin-top:14px;display:flex;justify-content:space-between;align-items:center;
+    font-family:'Sora',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-3);
+  }
+  .exhibit-card .caption .pin{color:var(--stamp);}
+
+  /* --- SECTION primitives --- */
+  section.block{padding:120px 0;}
+  section.block.tint{background:var(--blue-bg);}
+  section.block.dark{background:linear-gradient(138deg,#081640 0%,#1B44C8 60%,#0c1f5e 100%);color:#fff;position:relative;overflow:hidden;}
+  section.block.dark .orb{position:absolute;border-radius:50%;pointer-events:none;}
+  section.block.dark .orb.o1{top:-20%;left:-10%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(99,140,255,.18) 0%,transparent 65%);}
+  section.block.dark .container{position:relative;z-index:3;}
+  .section-head{display:flex;flex-direction:column;align-items:flex-start;gap:18px;margin-bottom:56px;max-width:880px;}
+  .section-head.centered{align-items:center;text-align:center;margin-left:auto;margin-right:auto;}
+  .section-head h2{
+    font-family:'Sora',sans-serif;font-weight:700;font-size:52px;line-height:1.08;letter-spacing:-.025em;margin:0;color:var(--ink);
+  }
+  .section-head.dark h2{color:#fff;}
+  .section-head .lede{font-size:19px;line-height:1.6;color:var(--ink-3);max-width:720px;margin:0;}
+  .section-head.dark .lede{color:rgba(255,255,255,.78);}
+  .section-head .num{
+    font-family:'Sora',sans-serif;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);
+  }
+
+  /* --- DISPATCH (story) --- */
+  .dispatch-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:start;}
+  .dispatch-grid .col p{font-size:19px;line-height:1.7;color:var(--ink-3);margin:0 0 20px;}
+  .dispatch-grid .pull{
+    font-family:'Sora',sans-serif;font-weight:600;font-size:26px;line-height:1.35;color:var(--ink);
+    border-left:3px solid var(--blue);padding-left:24px;margin-top:32px;
+  }
+  .ledger{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px 0;overflow:hidden;
+    box-shadow:0 4px 24px rgba(27,68,200,.05);
+  }
+  .ledger .row{
+    display:grid;grid-template-columns:140px 1fr;gap:24px;padding:18px 28px;border-bottom:1px solid var(--line);
+  }
+  .ledger .row:last-child{border-bottom:none;}
+  .ledger .lbl{font-family:'Sora',sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);padding-top:6px;}
+  .ledger .val{font-size:16px;color:var(--ink);font-weight:500;}
+  .ledger .val b{font-family:'Sora',sans-serif;font-weight:700;font-size:17px;display:block;color:var(--ink);margin-bottom:2px;}
+  .ledger .val small{display:block;color:var(--ink-4);font-size:14px;font-weight:400;}
+
+  /* --- EXHIBIT A (full letter) --- */
+  .letter-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start;}
+  .letter-grid .copy h3{font-family:'Sora',sans-serif;font-weight:700;font-size:40px;line-height:1.1;margin:0 0 20px;letter-spacing:-.02em;color:var(--ink);}
+  .letter-grid .copy p{font-size:17px;line-height:1.7;color:var(--ink-3);margin:0 0 16px;}
+  .specs{
+    margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  }
+  .specs .spec{
+    background:var(--blue-bg);border:1px solid rgba(27,68,200,.08);border-radius:12px;padding:14px 16px;
+  }
+  .specs .spec .l{font-family:'Sora',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;}
+  .specs .spec .v{font-family:'Sora',sans-serif;font-size:16px;font-weight:600;color:var(--ink);}
+  .letter-paper{
+    background:#fff;border-radius:16px;padding:20px;
+    box-shadow:0 24px 60px -20px rgba(27,68,200,.25), 0 4px 16px rgba(0,0,0,.06);
+    position:relative;
+  }
+  .letter-paper img{border-radius:8px;width:100%;height:auto;display:block;}
+  .letter-paper .stamp-badge{
+    position:absolute;top:-14px;right:24px;
+    background:var(--blue);color:#fff;padding:8px 14px;border-radius:999px;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    box-shadow:0 6px 18px rgba(27,68,200,.4);
+  }
+
+  /* --- ANATOMY (split) --- */
+  .anatomy-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start;}
+  .anatomy-grid .copy h3{font-family:'Sora',sans-serif;font-weight:700;font-size:44px;line-height:1.05;margin:0 0 20px;letter-spacing:-.02em;color:var(--ink);}
+  .anatomy-grid .copy h3 em{font-style:italic;font-family:'Inter',serif;font-weight:400;color:var(--blue);}
+  .anatomy-grid .copy .lede{font-size:18px;line-height:1.65;color:var(--ink-3);margin:0 0 32px;}
+  .legend{display:flex;flex-direction:column;gap:18px;}
+  .legend .leg{
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+    display:grid;grid-template-columns:48px 1fr;gap:18px;align-items:start;
+    position:relative;overflow:hidden;
+  }
+  .legend .leg::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:999px;background:var(--blue);}
+  .legend .leg.bespoke::before{background:var(--ink);}
+  .legend .swatch{width:48px;height:48px;border-radius:10px;border:1px solid var(--line);}
+  .legend .swatch.bespoke{background:#fff;}
+  .legend .swatch.reuse{background:var(--blue-chip);border-color:var(--blue-pale-2);}
+  .legend .lbl{font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+  .legend .leg.bespoke .lbl{color:var(--ink);}
+  .legend .desc{font-size:16px;line-height:1.55;color:var(--ink-2);}
+  .legend .desc b{font-weight:600;color:var(--ink);}
+  .anatomy-letter{
+    position:relative;background:#fff;border-radius:16px;padding:20px;
+    box-shadow:0 24px 60px -20px rgba(27,68,200,.25);
+  }
+  .anatomy-letter img{border-radius:8px;width:100%;display:block;}
+  .anno{
+    position:absolute;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    padding:8px 14px;border-radius:999px;white-space:nowrap;
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+  }
+  .anno.bespoke{top:18%;right:-24px;transform:translateX(100%);background:#fff;color:var(--ink);border:1px solid var(--line);}
+  .anno.reuse{top:60%;right:-24px;transform:translateX(100%);background:var(--blue);color:#fff;}
+  .arrow-line{position:absolute;height:2px;}
+  .arrow-line.a-bespoke{top:18%;right:0;width:24px;background:var(--ink);}
+  .arrow-line.a-reuse{top:60%;right:0;width:24px;background:var(--blue);}
+
+  /* --- THE MATH (stats on dark) --- */
+  .math-top{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:end;margin-bottom:56px;}
+  .math-top h2{font-family:'Sora',sans-serif;font-weight:700;font-size:56px;line-height:1.08;letter-spacing:-.025em;margin:0;color:#fff;}
+  .math-top h2 .grad{
+    background:linear-gradient(95deg,#93c5fd 0%,#dbeafe 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  }
+  .math-top .note{font-size:18px;line-height:1.65;color:rgba(255,255,255,.78);max-width:480px;margin:0;}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .stat-card{
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:36px 32px;backdrop-filter:blur(6px);
+  }
+  .stat-card .lbl{font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-pale-2);margin-bottom:18px;}
+  .stat-card .num{
+    font-family:'Sora',sans-serif;font-weight:800;font-size:96px;line-height:1;letter-spacing:-.04em;color:#fff;
+    background:linear-gradient(180deg,#fff 0%,#dbeafe 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .stat-card .num sup{font-size:22px;vertical-align:top;margin-left:6px;font-weight:600;color:var(--blue-pale-2);-webkit-text-fill-color:var(--blue-pale-2);}
+  .stat-card .desc{font-size:15px;line-height:1.55;color:rgba(255,255,255,.78);margin-top:18px;}
+
+  /* --- EXHIBIT B (reply) --- */
+  .reply-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center;}
+  .reply-grid .copy h3{font-family:'Sora',sans-serif;font-weight:700;font-size:52px;line-height:1.05;letter-spacing:-.025em;margin:0 0 24px;color:var(--ink);}
+  .reply-grid .copy h3 em{font-style:italic;font-family:'Inter',serif;font-weight:400;color:var(--blue);}
+  .reply-grid .stamp{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1.5px solid var(--stamp);color:var(--stamp);background:#fff;
+    padding:8px 16px;border-radius:6px;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    transform:rotate(-1.5deg);margin-bottom:28px;
+  }
+  .reply-grid .stamp::before{content:"";width:8px;height:8px;background:var(--stamp);border-radius:50%;}
+  .reply-grid .quote{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 36px;
+    font-size:21px;line-height:1.55;color:var(--ink);font-style:italic;font-weight:400;
+    position:relative;box-shadow:0 4px 24px rgba(27,68,200,.06);margin:0 0 20px;
+  }
+  .reply-grid .quote::before{
+    content:"\201C";position:absolute;top:0;left:18px;font-family:'Sora',sans-serif;font-weight:800;font-size:80px;line-height:1;color:var(--blue-pale-2);
+  }
+  .reply-grid .attr{font-family:'Sora',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--ink-3);}
+  .reply-paper{position:relative;}
+  .reply-paper .frame{
+    background:#fff;border-radius:16px;padding:20px;
+    box-shadow:0 24px 60px -20px rgba(27,68,200,.25);transform:rotate(1.4deg);
+  }
+  .reply-paper .frame img{border-radius:8px;width:100%;display:block;}
+
+  /* --- PRINCIPLES --- */
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .principle{
+    background:#fff;border:1px solid var(--line);border-radius:18px;padding:36px 32px;
+    position:relative;overflow:hidden;transition:all .2s;
+    box-shadow:0 2px 20px rgba(27,68,200,.04);
+  }
+  .principle::before{content:"";position:absolute;left:0;top:24px;bottom:24px;width:3px;border-radius:999px;background:var(--blue);}
+  .principle .n{
+    font-family:'Sora',sans-serif;font-weight:800;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);
+    margin-bottom:18px;
+  }
+  .principle h3{font-family:'Sora',sans-serif;font-weight:700;font-size:22px;line-height:1.25;margin:0 0 14px;color:var(--ink);}
+  .principle p{font-size:15.5px;line-height:1.7;color:var(--ink-3);margin:0;}
+
+  /* --- SYSTEM (process steps) --- */
+  .process{position:relative;}
+  .process .connector{
+    position:absolute;top:36px;left:14%;right:14%;height:1px;
+    background:linear-gradient(90deg,#1B44C8 0%,#93c5fd 50%,#1B44C8 100%);opacity:.35;z-index:0;
+  }
+  .process .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative;z-index:1;}
+  .process .step{text-align:center;}
+  .process .circle{
+    width:72px;height:72px;border-radius:20px;margin:0 auto 22px;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(145deg,#2553D4,#0c1f5e);
+    box-shadow:0 8px 28px rgba(27,68,200,.35);
+    font-family:'Sora',sans-serif;font-weight:800;font-size:26px;color:#fff;
+  }
+  .process .step.hi .circle{
+    background:linear-gradient(145deg,#1B44C8,#091e6e);
+    box-shadow:0 12px 36px rgba(27,68,200,.5);transform:scale(1.06);
+  }
+  .process .step h3{font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:var(--ink);margin:0 0 10px;}
+  .process .step p{font-size:15px;line-height:1.65;color:var(--ink-3);margin:0;}
+  .process .step .badge{
+    display:inline-block;background:var(--blue-chip);color:var(--blue);
+    padding:3px 10px;border-radius:999px;font-family:'Sora',sans-serif;font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    margin-bottom:8px;
+  }
+
+  /* --- CTA --- */
+  .cta{
+    background:linear-gradient(148deg,#1B44C8 0%,#091e6e 100%);
+    color:#fff;border-radius:24px;padding:80px;position:relative;overflow:hidden;
+    box-shadow:0 24px 80px rgba(27,68,200,.32);
+  }
+  .cta .glow{position:absolute;top:-30%;right:-10%;width:50%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.1) 0%,transparent 65%);}
+  .cta .inner{position:relative;z-index:2;display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center;}
+  .cta h2{font-family:'Sora',sans-serif;font-weight:800;font-size:56px;line-height:1.05;letter-spacing:-.025em;margin:0 0 20px;}
+  .cta h2 .grad{
+    background:linear-gradient(95deg,#93c5fd 0%,#dbeafe 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .cta p{font-size:18px;line-height:1.65;color:rgba(255,255,255,.85);margin:0 0 32px;max-width:520px;}
+  .cta .buttons{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 22px;border-radius:999px;text-decoration:none;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:14px;letter-spacing:.01em;
+    transition:all .2s;
+  }
+  .btn-primary{background:#fff;color:var(--blue);box-shadow:0 4px 16px rgba(0,0,0,.18);}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.24);}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);}
+  .btn-ghost:hover{background:rgba(255,255,255,.2);}
+  .cta .right{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:32px;
+  }
+  .cta .right .row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:14px;}
+  .cta .right .row:last-child{border-bottom:none;}
+  .cta .right .row .k{color:rgba(255,255,255,.65);font-family:'Sora',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:11px;}
+  .cta .right .row .v{color:#fff;font-family:'Sora',sans-serif;font-weight:700;}
+
+  /* --- FOOTER --- */
+  footer{padding:48px 0 32px;background:#fff;border-top:1px solid var(--line);}
+  footer .row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
+  footer .logo{display:flex;align-items:center;gap:12px;}
+  footer .logo img{height:36px;}
+  footer .legal{font-size:13px;color:var(--ink-4);}
+  footer .links{display:flex;gap:24px;}
+  footer .links a{font-size:13px;color:var(--ink-3);text-decoration:none;font-weight:500;}
+
+  /* --- responsive --- */
+  @media (max-width:1000px){
+    .container{padding:0 24px;}
+    .hero{padding:140px 0 80px;}
+    .hero .inner,.dispatch-grid,.letter-grid,.anatomy-grid,.reply-grid,.math-top,.cta .inner{grid-template-columns:1fr;gap:48px;}
+    .hero h1{font-size:52px;} .section-head h2{font-size:36px;} .math-top h2{font-size:38px;} .cta h2{font-size:38px;}
+    .reply-grid .copy h3,.anatomy-grid .copy h3{font-size:32px;}
+    .stats,.principles{grid-template-columns:1fr;}
+    .process .grid{grid-template-columns:1fr 1fr;} .process .connector{display:none;}
+    .cta{padding:48px 32px;}
+    nav.top .links{display:none;}
+    .anno,.arrow-line{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="top">
+  <a href="https://alwaysoutreach.com" class="logo">
+    <img src="brand_assets/alwaysoutreach-logo.png" alt="AlwaysOutreach" />
+    <span>AlwaysOutreach</span>
+  </a>
+  <div class="links">
+    <a href="https://alwaysoutreach.com#services">Services</a>
+    <a href="https://alwaysoutreach.com#process">How It Works</a>
+    <a href="https://alwaysoutreach.com#results">Results</a>
+  </div>
+  <a href="https://alwaysoutreach.com/the-process.html" class="cta">Get Started →</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero grain">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <div class="container">
+    <div class="inner">
+      <div>
+        <div class="chip on-dark" style="margin-bottom:28px;">A Field Report · Vol. 01</div>
+        <h1>CEOs<br/><span class="grad">do reply.</span></h1>
+        <p class="deck">One letter. One stamp. A five-day reply from the Group Chief Executive of one of the largest banks in the world. This is the same mechanism — the same two-paragraphs-of-research mechanism — that AlwaysOutreach runs for B2B companies in 2026.</p>
+        <div class="meta">
+          <div class="meta-chip"><b>Sent</b> &nbsp;03 Jan 2002</div>
+          <div class="meta-chip"><b>Reply</b> &nbsp;08 Jan 2002</div>
+          <div class="meta-chip"><b>Elapsed</b> &nbsp;5 working days</div>
+        </div>
+      </div>
+      <div class="exhibit-card">
+        <div class="tape"></div>
+        <div class="scan">
+          <img src="assets/outreach-letter.jpg" alt="The original letter sent to the Group Chief Executive on 3 January 2002, with the reusable portion highlighted." />
+        </div>
+        <div class="caption">
+          <span>Exhibit A · The outgoing letter</span>
+          <span class="pin">● 03.01.02</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 01 — DISPATCH ===================== -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div class="chip">§ 01 — The dispatch</div>
+      <h2>One letter, one stamp,<br/>one prospect &mdash; <em style="color:var(--blue);font-style:italic;font-family:'Inter',serif;font-weight:400;">at first</em>.</h2>
+      <p class="lede">A single-page letter, written by hand and posted to the Group Chief Executive of one of the world's largest banks. No mailing list. No automation. Just two paragraphs of homework and a clear, modest proposal.</p>
+    </div>
+    <div class="dispatch-grid">
+      <div class="col">
+        <p>The recipient was the Group Chief Executive of a 170,000-person, 78-country bank. The sender was a small training firm in Buckinghamshire with one good idea and no introduction.</p>
+        <p>What got the letter through wasn't the channel — paper, in 2002. It was the two paragraphs at the top that proved the sender had actually read the bank's annual report and the CEO's interviews.</p>
+        <div class="pull">"You will not find this in any sales-automation tool. You will find it in a filing cabinet."</div>
+      </div>
+      <div class="ledger">
+        <div class="row">
+          <div class="lbl">From</div>
+          <div class="val"><b>Alastair Lee</b><small>AdVal &middot; Aylesbury, Buckinghamshire</small></div>
+        </div>
+        <div class="row">
+          <div class="lbl">To</div>
+          <div class="val"><b>Sir Keith R. Whitson</b><small>Group Chief Executive &middot; 10 Lower Thames Street, London</small></div>
+        </div>
+        <div class="row">
+          <div class="lbl">Sent</div>
+          <div class="val"><b>3 January 2002</b><small>By post · single page · A4 white</small></div>
+        </div>
+        <div class="row">
+          <div class="lbl">Reply</div>
+          <div class="val"><b>8 January 2002</b><small>Signed by the Group Chief Executive himself.</small></div>
+        </div>
+        <div class="row">
+          <div class="lbl">Elapsed</div>
+          <div class="val"><b>Five working days.</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 02 — EXHIBIT A ===================== -->
+<section class="block tint">
+  <div class="container">
+    <div class="section-head">
+      <div class="chip">§ 02 — Exhibit A</div>
+      <h2>One page. One ask.<br/>The whole mechanism.</h2>
+    </div>
+    <div class="letter-grid">
+      <div class="copy">
+        <h3>The same mechanism, then and now.</h3>
+        <p>Two paragraphs of named research about the recipient. A clear, modest proposal. A signature. Posted.</p>
+        <p>That's it. The same mechanism that works today, in 2026, by email or on LinkedIn — and the same mechanism AlwaysOutreach runs, at scale, for B2B companies who want decision-makers actually replying.</p>
+        <div class="specs">
+          <div class="spec"><div class="l">Date</div><div class="v">03.01.02</div></div>
+          <div class="spec"><div class="l">Length</div><div class="v">One page</div></div>
+          <div class="spec"><div class="l">Channel</div><div class="v">Royal Mail</div></div>
+          <div class="spec"><div class="l">Outcome</div><div class="v">Reply &amp; meeting</div></div>
+        </div>
+      </div>
+      <div class="letter-paper">
+        <div class="stamp-badge">Exhibit A</div>
+        <img src="assets/outreach-letter.jpg" alt="The original outgoing letter, dated 3 January 2002, with the reusable portion highlighted in blue." />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 03 — ANATOMY ===================== -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div class="chip">§ 03 — Anatomy</div>
+      <h2>Two paragraphs are <em style="font-style:italic;font-family:'Inter',serif;font-weight:400;color:var(--blue);">bespoke</em>.<br/>The rest is portable.</h2>
+      <p class="lede">The opening &mdash; the two paragraphs of research about the recipient and their company &mdash; is the only part written for one named person. Everything beneath the blue line is the pitch. It can travel.</p>
+    </div>
+    <div class="anatomy-grid">
+      <div class="copy">
+        <h3>The discovery<br/>that scales <em>everything</em>.</h3>
+        <p class="lede">If 80% of a great letter is reusable, then the only thing you really need to do per-prospect is the research. That's exactly the part AlwaysOutreach automates: relevant, recent events about each named person — written into two paragraphs that prove the email is for them.</p>
+        <div class="legend">
+          <div class="leg bespoke">
+            <div class="swatch bespoke"></div>
+            <div>
+              <div class="lbl" style="color:var(--ink);">White &mdash; bespoke</div>
+              <div class="desc"><b>Two short paragraphs</b> of named, specific research. A line they could not have read in another letter.</div>
+            </div>
+          </div>
+          <div class="leg">
+            <div class="swatch reuse"></div>
+            <div>
+              <div class="lbl">Blue &mdash; reusable</div>
+              <div class="desc"><b>The pitch, the proof, the ask.</b> Written once. Swap the recipient's name and a place name, and it is ready for the next CEO.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="anatomy-letter">
+        <img src="assets/outreach-letter.jpg" alt="The same letter, annotated to show the white bespoke opening and the blue-highlighted reusable body." />
+        <span class="anno bespoke">Bespoke · for one person</span>
+        <span class="arrow-line a-bespoke"></span>
+        <span class="anno reuse">Reusable · for anyone</span>
+        <span class="arrow-line a-reuse"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 04 — THE ECONOMICS (dark) ===================== -->
+<section class="block dark grain">
+  <div class="orb o1"></div>
+  <div class="container">
+    <div class="math-top">
+      <h2>A little research.<br/><span class="grad">The same letter.</span></h2>
+      <p class="note">Write the body once. Then, for each new prospect, do an hour of research and write the two paragraphs that prove it. That's the only honest version of "personalisation at scale."</p>
+    </div>
+    <div class="stats">
+      <div class="stat-card">
+        <div class="lbl">Bespoke</div>
+        <div class="num">2<sup>paragraphs</sup></div>
+        <div class="desc">Of named, specific research. The part the recipient knows was written for them.</div>
+      </div>
+      <div class="stat-card">
+        <div class="lbl">Reusable</div>
+        <div class="num">80<sup>%</sup></div>
+        <div class="desc">Of the letter is the pitch — written once, sent to anyone, with two names swapped.</div>
+      </div>
+      <div class="stat-card">
+        <div class="lbl">Reply</div>
+        <div class="num">5<sup>days</sup></div>
+        <div class="desc">From the Group Chief Executive of a 170,000-person company. Signed by hand.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 05 — EXHIBIT B (the reply) ===================== -->
+<section class="block tint">
+  <div class="container">
+    <div class="section-head">
+      <div class="chip">§ 05 — Exhibit B</div>
+      <h2>And then &mdash; he <em style="font-style:italic;font-family:'Inter',serif;font-weight:400;color:var(--blue);">replied</em>.</h2>
+    </div>
+    <div class="reply-grid">
+      <div class="reply-paper">
+        <div class="frame">
+          <img src="assets/reply-letter.jpg" alt="The reply letter from the Group Chief Executive, dated 8 January 2002, with a received stamp from 9 January 2002." />
+        </div>
+      </div>
+      <div class="copy">
+        <div class="stamp">Received · 09 Jan 2002</div>
+        <h3>Five working days.<br/>Signed by hand.</h3>
+        <div class="quote">Your letter of 3 January has stimulated interest from my training team at Bricket Wood. They are currently working on tailored materials &hellip; please contact our Senior Executive.</div>
+        <div class="attr">— Keith R. Whitson &middot; Group Chief Executive</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 06 — PRINCIPLES ===================== -->
+<section class="block">
+  <div class="container">
+    <div class="section-head centered">
+      <div class="chip">§ 06 — What this proves</div>
+      <h2>Three principles.<br/>2002 → 2026.</h2>
+      <p class="lede">What a single filing-cabinet letter still teaches us — and the three principles AlwaysOutreach runs on, every day, in 2026.</p>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <div class="n">i. The right people</div>
+        <h3>Decision-makers <em style="font-style:italic;color:var(--blue);font-family:'Inter',serif;font-weight:400;">do</em> reply.</h3>
+        <p>Chief executives of 170,000-person companies read their post. They reply when the message respects their time and names something specific. Not often. But reliably.</p>
+      </div>
+      <div class="principle">
+        <div class="n">ii. The whole game</div>
+        <h3>Research is the leverage.</h3>
+        <p>The two bespoke paragraphs are the entire reason the rest gets read. Without them you are spam; with them you are a peer who has done the homework.</p>
+      </div>
+      <div class="principle">
+        <div class="n">iii. The system</div>
+        <h3>A good letter is a template.</h3>
+        <p>The body — the pitch, the proof, the ask — is written once. It is reusable forever, with new names and a fresh top. That is the leverage AlwaysOutreach gives you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 07 — THE PROCESS ===================== -->
+<section class="block tint">
+  <div class="container">
+    <div class="section-head centered">
+      <div class="chip">§ 07 — The AlwaysOutreach process</div>
+      <h2>From one good letter<br/>to a full pipeline.</h2>
+      <p class="lede">We work with you to write the reusable body in your voice. Then, for each prospect you name, we research and write the two bespoke paragraphs that make the email feel like it was only ever for them.</p>
+    </div>
+    <div class="process">
+      <div class="connector"></div>
+      <div class="grid">
+        <div class="step">
+          <div class="circle">1</div>
+          <h3>The body, once.</h3>
+          <p>We work with you to write the reusable pitch — your story, your proof, your ask. One page, posted-letter quality, signed in your voice.</p>
+        </div>
+        <div class="step hi">
+          <div class="badge">per prospect</div>
+          <div class="circle">2</div>
+          <h3>Two paragraphs of research.</h3>
+          <p>For each named recipient we read their interviews, reports and recent moves, and write the bespoke opening only they could have received.</p>
+        </div>
+        <div class="step">
+          <div class="circle">3</div>
+          <h3>Delivered for approval.</h3>
+          <p>Every email is delivered as a PDF for you to read, approve, and send by copy &amp; paste. Nothing happens unless you want it to.</p>
+        </div>
+        <div class="step">
+          <div class="circle">4</div>
+          <h3>Meetings booked.</h3>
+          <p>Replies route back to you with a quiet record of what worked, who answered, and what to send next. Qualified meetings, not noise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="block">
+  <div class="container">
+    <div class="cta grain">
+      <div class="glow"></div>
+      <div class="inner">
+        <div>
+          <div class="chip on-dark" style="margin-bottom:24px;">Begin</div>
+          <h2>Write <span class="grad">one</span> good letter.<br/>Send it to anyone.</h2>
+          <p>We'll build the body, do the research per-prospect, and put it in front of the named decision-maker you actually want a meeting with. You'll know within a week whether they wrote back.</p>
+          <div class="buttons">
+            <a href="https://alwaysoutreach.com/the-process.html" class="btn btn-primary">See how it works →</a>
+            <a href="mailto:a.lee@alwaysoutreach.com" class="btn btn-ghost">a.lee@alwaysoutreach.com</a>
+          </div>
+        </div>
+        <div class="right">
+          <div class="row"><span class="k">Open rate</span><span class="v">38%</span></div>
+          <div class="row"><span class="k">Reply rate</span><span class="v">8.5%</span></div>
+          <div class="row"><span class="k">To first meeting</span><span class="v">21 days</span></div>
+          <div class="row"><span class="k">Letters since 2002</span><span class="v">Still counting</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="logo">
+        <img src="brand_assets/alwaysoutreach-logo.png" alt="AlwaysOutreach" />
+      </div>
+      <div class="links">
+        <a href="https://alwaysoutreach.com#services">Services</a>
+        <a href="https://alwaysoutreach.com#process">Process</a>
+        <a href="https://alwaysoutreach.com#results">Results</a>
+        <a href="https://alwaysoutreach.com/contact.html">Contact</a>
+      </div>
+      <div class="legal">© 2026 AlwaysOutreach. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
